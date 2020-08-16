@@ -1,63 +1,112 @@
-from flask import Flask, url_for, render_template, request, redirect, session
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, render_template, request, redirect, url_for
+from helper.create_user import create_user
+from helper.validate import validate_user
+from constants import students as st_num
+from helper.score_converter import list_to_score
+from doa.insert import insert_score
+
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
-db = SQLAlchemy(app)
 
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(100), unique=True)
-    password = db.Column(db.String(100))
-
-    def __init__(self, username, password):
-        self.username = username
-        self.password = password
+@app.route('/')
+def home_page():
+    return render_template('index.html')
 
 
-@app.route('/', methods=['GET'])
-def index():
-    if session.get('logged_in'):
-        return render_template('home.html')
-    else:
-        return render_template('index.html', message="Hello!")
+@app.route('/go_to_login/<login_type>/')
+def go_to_login(login_type):
+    if login_type == 'school':
+        return render_template('principal.html')#TODO add html
+
+    elif login_type == 'organization':
+        return render_template('admin.html') #TODO add html
+
+    elif login_type == 'educator':
+        return render_template('teacher.html') #TODO add html
+
+    return "Error"
 
 
-@app.route('/register/', methods=['GET', 'POST'])
-def register():
-    if request.method == 'POST':
-        try:
-            db.session.add(User(username=request.form['username'], password=request.form['password']))
-            db.session.commit()
-            return redirect(url_for('login'))
-        except:
-            return render_template('index.html', message="User Already Exists")
-    else:
-        return render_template('register.html')
+@app.route('/api/organization/create/', methods=['POST'])
+def create_organization_main():
+    username = request.form['username']
+    password = request.form['Password']
+
+    if create_user(username, password, "organization"):
+        return render_template('admin.html') #TODO add html
+
+    return "Error! Please try later!"
 
 
-@app.route('/login/', methods=['GET', 'POST'])
-def login():
-    if request.method == 'GET':
-        return render_template('login.html')
-    else:
-        u = request.form['username']
-        p = request.form['password']
-        data = User.query.filter_by(username=u, password=p).first()
-        if data is not None:
-            session['logged_in'] = True
-            return redirect(url_for('index'))
-        return render_template('index.html', message="Incorrect Details")
+@app.route('/api/organization/login/', methods=['POST'])
+def login_organization_main():
+    username = request.form['username']
+    password = request.form['password']
+
+    if validate_user(username, password, "organization"):
+        return render_template('admin-dashboard.html')  #TODO add html
 
 
-@app.route('/logout', methods=['GET', 'POST'])
-def logout():
-    session['logged_in'] = False
-    return redirect(url_for('index'))
+@app.route('/api/school/create/', methods=['POST'])
+def create_school_main():
+    username = request.form['username']
+    password = request.form['Password']
 
-if(__name__ == '__main__'):
-    app.secret_key = "ThisIsNotASecret:p"
-    db.create_all()
-    app.run()
-    
+    if create_user(username, password, "school"):
+        return render_template('principal.html')  # TODO add html
+
+    return "Error! Please try later!"
+
+
+@app.route('/api/school/login/', methods=['POST'])
+def login_school_main():
+    username = request.form['username']
+    password = request.form['password']
+
+    if validate_user(username, password, "school"):
+        return render_template('principal-dashboard.html')  # TODO add html
+
+    return "Error! Please try later!"
+
+
+@app.route('/api/educator/create/', methods=['POST'])
+def create_educator_main():
+    username = request.form['username']
+    password = request.form['Password']
+
+    if create_user(username, password, "educator"):
+        return render_template('teacher.html')  # TODO add html
+
+    return "Error! Please try later!"
+
+
+@app.route('/api/educator/login/', methods=['POST'])
+def login_educator_main():
+    username = request.form['username']
+    password = request.form['password']
+
+    if validate_user(username, password, "educator"):
+        return render_template('teacher-dashboard.html')  # TODO add html
+
+    return "Error! Please try later!"
+
+
+@app.route('/generate/result/', methods=['POST'])
+def generate():
+    month = request.form['month']
+    for i in range(st_num):
+        my_list = request.form.getlist('student' + str(i+1))
+        score = list_to_score(my_list)
+        insert_score(i+1, score, month)
+
+    render_template('teacher-dashboard.html')
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+
+
+
