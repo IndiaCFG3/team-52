@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Grading</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <title>Table</title>
+
+  <style>
+    /* Toggle Button */
+
+    .cm-toggle {
+      -webkit-appearance: none;
+      -webkit-tap-highlight-color: transparent;
+      position: relative;
+      border: 0;
+      outline: 0;
+      cursor: pointer;
+      margin: 10px;
+    }
+
+    /* To create surface of toggle button */
+
+    .cm-toggle:after {
+      content: '';
+      width: 60px;
+      height: 28px;
+      display: inline-block;
+      background: rgba(196, 195, 195, 0.55);
+      border-radius: 18px;
+      clear: both;
+    }
+
+    /* Contents before checkbox to create toggle handle */
+
+    .cm-toggle:before {
+      content: '';
+      width: 32px;
+      height: 32px;
+      display: block;
+      position: absolute;
+      left: 0;
+      top: -3px;
+      border-radius: 50%;
+      background: rgb(255, 255, 255);
+      box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Shift the handle to left on check event */
+
+    .cm-toggle:checked:before {
+      left: 32px;
+      box-shadow: -1px 1px 3px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Background color when toggle button will be active */
+
+    .cm-toggle:checked:after {
+      background: #16a085;
+    }
+
+    /* Transition for smoothness */
+
+    .cm-toggle,
+    .cm-toggle:before,
+    .cm-toggle:after,
+    .cm-toggle:checked:before,
+    .cm-toggle:checked:after {
+      transition: ease .3s;
+      -webkit-transition: ease .3s;
+      -moz-transition: ease .3s;
+      -o-transition: ease .3s;
+    }
+  </style>
+  <style>
+    h3,
+    h4 {
+      margin: 10px 0 30px 0;
+      letter-spacing: 10px;
+      font-size: 20px;
+      color: #111;
+    }
+
+    .container {
+      padding: 80px 120px;
+    }
+
+    .person {
+      border: 10px solid transparent;
+      margin-bottom: 25px;
+      width: 80%;
+      height: 80%;
+      opacity: 0.7;
+    }
+
+    .carousel-inner img {
+      -webkit-filter: grayscale(90%);
+      filter: grayscale(90%);
+      /* make all photos black and white */
+      width: 100%;
+      /* Set width to 100% */
+      margin: auto;
+    }
+
+    @media (max-width: 600px) {
+      .carousel-caption {
+        display: none;
+        /* Hide the carousel text when the screen is less than 600 pixels wide */
+      }
+    }
+
+    .bg-1 {
+      background: #2d2d30;
+      color: #bdbdbd;
+    }
+
+    .bg-1 h3 {
+      color: #fff;
+    }
+
+    .bg-1 p {
+      font-style: italic;
+    }
+
+    .list-group-item:first-child {
+      border-top-right-radius: 0;
+      border-top-left-radius: 0;
+    }
+
+    .list-group-item:last-child {
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    .thumbnail {
+      padding: 0 0 15px 0;
+      border: none;
+      border-radius: 0;
+    }
+
+    .thumbnail p {
+      margin-top: 15px;
+      color: #555;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      background-color: #0681d3;
+      color: #f1f1f1;
+      border-radius: 0;
+      transition: .2s;
+    }
+
+    .btn:hover,
+    .btn:focus {
+      border: 1px solid #333;
+      background-color: #07a2c8;
+      color: #000;
+    }
+
+    .modal-header,
+    h4,
+    .close {
+      background-color: #333;
+      color: #fff !important;
+      text-align: center;
+      font-size: 30px;
+    }
+
+    .modal-header,
+    .modal-body {
+      padding: 40px 50px;
+    }
+
+    .nav-tabs li a {
+      color: #777;
+    }
+
+    #googleMap {
+      width: 100%;
+      height: 400px;
+      -webkit-filter: grayscale(100%);
+      filter: grayscale(100%);
+    }
+
+    .navbar {
+      font-family: Montserrat, sans-serif;
+      margin-bottom: 0;
+      background-color: #4367CC;
+      border: 0;
+      font-size: 11px !important;
+      letter-spacing: 4px;
+      opacity: 0.9;
+    }
+
+    .navbar li a,
+    .navbar .navbar-brand {
+      color: #d5d5d5 !important;
+    }
+
+    .navbar-default .navbar-toggle {
+      border-color: transparent;
+    }
+
+    .open .dropdown-toggle {
+      color: #fff;
+      background-color: #555 !important;
+    }
+
+    .dropdown-menu li a {
+      color: #000 !important;
+    }
+
+    .dropdown-menu li a:hover {
+      background-color: red !important;
+    }
+
+    footer a:hover {
+      color: #777;
+      text-decoration: none;
+    }
+
+    .form-control {
+      border-radius: 0;
+    }
+
+    textarea {
+      resize: none;
+    }
+
+    body {
+      background: white;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      font: 400 15px/1.8 Lato, sans-serif;
+      color: #777;
+    }
+
+    th {
+      font-size: 22px;
+    }
+
+    tr td {
+      font-size: 26px;
+      font-weight: 600;
+    }
+
+
+    select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      -ms-appearance: none;
+      appearance: none;
+      outline: 0;
+      box-shadow: none;
+      border: 0 !important;
+      background: #2c3e50;
+      background-image: none;
+
+    }
+
+    /* Remove IE arrow */
+    select::-ms-expand {
+      display: none;
+    }
+
+    /* Custom Select */
+    .select {
+      position: relative;
+      display: flex;
+      width: 15em;
+      height: 3em;
+      line-height: 3;
+      background: #2c3e50;
+      overflow: hidden;
+      border-radius: .25em;
+    }
+
+    select {
+      flex: 1;
+      padding: 0 .5em;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    /* Arrow */
+    .select::after {
+      content: '\25BC';
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 0 1em;
+      background: #34495e;
+      cursor: pointer;
+      pointer-events: none;
+      -webkit-transition: .25s all ease;
+      -o-transition: .25s all ease;
+      transition: .25s all ease;
+    }
+
+    /* Transition */
+    .select:hover::after {
+      color: #f39c12;
+    }
+
+    #month {
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    #Year {
+      display: inline-block;
+    }
+
+    .flex {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+
+    .container1 {
+
+      justify-content: space-around;
+      align-content: space-around;
+    }
+
+    .item {
+      padding: 2px;
+
+    }
+
+    .wrapper {
+      text-align: center;
+    }
+
+    .button {
+      position: absolute;
+      top: 50%;
+    }
+  </style>
+</head>
+
+<body id="myPage"></body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand"><img src="https://simpleeducationfoundation.org/wp-content/uploads/2019/04/Logo.png"
+          width=55px></a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="homepage.html">HOME</a></li>
+        <li><a href="evaluation.html">EVALUATION</a></li>
+        <li><a href="login.html">LOGOUT</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div>
+
+  <div class="container">
+
+    <div class="container1 flex">
+      <div class="item"><label for="month">
+          <h2>Month: </h2>
+        </label>
+        <select class="select" id="month" name="Month">
+
+          <option>- Month -</option>
+          <option value="1">January</option>
+          <option value="2">Febuary</option>
+          <option value="3">March</option>
+          <option value="4">April</option>
+          <option value="5">May</option>
+          <option value="6">June</option>
+          <option value="7">July</option>
+          <option value="8">August</option>
+          <option value="9">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12">December</option>
+        </select>
+      </div>
+      <div class="item">
+        <label for="Year">
+          <h2> Year: </h2>
+        </label>
+        <select class="select" id="Year" name="Year">
+          <option>- Year -</option>
+          <option value="2020">2026</option>
+          <option value="2019">2025</option>
+          <option value="2018">2024</option>
+          <option value="2017">2023</option>
+          <option value="2016">2022</option>
+          <option value="2015">2021</option>
+          <option value="2020">2020</option>
+          <option value="2019">2019</option>
+          <option value="2018">2018</option>
+          <option value="2017">2017</option>
+          <option value="2016">2016</option>
+          <option value="2015">2015</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class="card">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th></th>
+            <th>p1</th>
+            <th>p2</th>
+            <th>p3</th>
+            <th>p4</th>
+            <th>p5</th>
+            <th>p6</th>
+            <th>p7</th>
+            <th>p8</th>
+            <th>p9</th>
+            <th>p10</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>s1</td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+          </tr>
+          <tr>
+            <td>s2</td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+          </tr>
+          <tr>
+            <td>s3</td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+          </tr>
+          <tr>
+            <td>s4</td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+          </tr>
+          <tr>
+            <td>s5</td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+            <td><input type="checkbox" name="checkbox" class="cm-toggle"></td>
+          </tr>
+
+
+        </tbody>
+      </table>
+      <div class="wrapper">
+        <button type="button" class="btn btn-primary btn-lg">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+
+</html>
