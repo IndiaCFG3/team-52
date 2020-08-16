@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com - No Copyright -->
+  <title>HOME PAGE</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+<style>
+   body {
+    font: 400 15px/1.8 Lato, sans-serif;
+    color: #777;
+  }
+  h3, h4 {
+    margin: 10px 0 30px 0;
+    letter-spacing: 10px;      
+    font-size: 20px;
+    color: #111;
+  }
+  .container {
+    padding: 80px 120px;
+  }
+  .person {
+    border: 10px solid transparent;
+    margin-bottom: 25px;
+    width: 80%;
+    height: 80%;
+    opacity: 0.7;
+  }
+  .person:hover {
+    border-color: #f1f1f1;
+  }
+  .carousel-inner img {
+    width: 100%; /* Set width to 100% */
+    margin: auto;
+    
+  }
+  .carousel-caption h3 {
+    color: #fff !important;
+  }
+  @media (max-width: 600px) {
+    .carousel-caption {
+      display: none; /* Hide the carousel text when the screen is less than 600 pixels wide */
+    }
+  }
+  .bg-1 {
+    background: #2d2d30;
+    color: #bdbdbd;
+  }
+  .bg-1 h3 {color: #fff;}
+  .bg-1 p {font-style: italic;}
+  .list-group-item:first-child {
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }
+  .list-group-item:last-child {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .thumbnail {
+    padding: 0 0 15px 0;
+    border: none;
+    border-radius: 0;
+  }
+  .thumbnail p {
+    margin-top: 15px;
+    color: #555;
+  }
+  .btn {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #f1f1f1;
+    border-radius: 0;
+    transition: .2s;
+  }
+  .btn:hover, .btn:focus {
+    border: 1px solid #333;
+    background-color: #fff;
+    color: #000;
+  }
+  .modal-header, h4, .close {
+    background-color: #333;
+    color: #fff !important;
+    text-align: center;
+    font-size: 30px;
+  }
+  .modal-header, .modal-body {
+    padding: 40px 50px;
+  }
+  .nav-tabs li a {
+    color: #777;
+  } 
+  .navbar {
+    font-family: Montserrat, sans-serif;
+    margin-bottom: 0;
+    background-color: #2d2d30;
+    border: 0;
+    font-size: 11px !important;
+    letter-spacing: 4px;
+    opacity: 0.9;
+    padding:8px;
+  }
+  .navbar li a, .navbar .navbar-brand { 
+    color: #d5d5d5 !important;
+  }
+  .navbar-nav li a:hover {
+    color: #fff !important;
+  }
+  .navbar-nav li.active a {
+    color: #fff !important;
+    background-color: #29292c !important;
+  }
+  .navbar-default .navbar-toggle {
+    border-color: transparent;
+  }
+  .open .dropdown-toggle {
+    color: #fff;
+    background-color: #555 !important;
+  }
+  .dropdown-menu li a {
+    color: #000 !important;
+  }
+  .dropdown-menu li a:hover {
+    background-color: red !important;
+  }
+  footer {
+    background-color: #2d2d30;
+    color: #f5f5f5;
+    padding: 32px;
+  }
+  footer a {
+    color: #f5f5f5;
+  }
+  footer a:hover {
+    color: #777;
+    text-decoration: none;
+  }  
+  .form-control {
+    border-radius: 0;
+  }
+  textarea {
+    resize: none;
+  }
+.top-line{
+  font-size:25px;
+  color:dodgerblue;
+  font-family:Impact,'Arial Narrow', sans-serif;
+  padding-bottom:9px;
+}
+.bottom-line{
+  font-size:30px;
+  color:white;
+  font-family:Arial, Helvetica, sans-serif;
+}
+/*faqs*/
+.accordion {
+  background-color: #d9adad;
+  color: black;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+.active, .accordion:hover {
+  background-color: #84a9ac;
+}
+
+.accordion:after {
+  content: '\002B';
+  color: black;
+  font-weight: bold;
+  float: left;
+  margin-left: 5px;
+  margin-right: 10px;
+}
+
+.active:after {
+  content: "\2212";
+}
+.content{
+  background-color:#3b5249;
+}
+.panel {
+  padding: 0 18px;
+  background-color:#b2bec3;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+.showmore{
+    display: block;
+	width: 12%;
+    border: none;
+	background-color:royalblue;
+	color: white;
+	padding: 10px 18px;
+	font-size: 16px;
+	cursor: pointer;
+	text-align: center;
+    text-decoration:none;
+}
+.bg-img {
+			height: 100%;
+			background-position: center;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			//background-size: 100% 100%;
+			background-size: cover;
+		}
+.text-block {
+  top: 40%;
+  left: 50%;
+  font-size:40px;
+  background:rgb(0,0,0);
+  background:rgba(0, 0, 0, 0.5);
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top:20px;
+  padding-bottom:20px;
+  transform: translate(-50%,-50%);
+  text-align:center;
+  font-weight: bold;
+  position:fixed;
+}
+.faq_bg{
+    background: #DAE2F8;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #D6A4A4, #DAE2F8);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #D6A4A4, #DAE2F8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+</style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>                        
+            </button>
+            <a class="navbar-brand" href="#">
+                <img src="https://simpleeducationfoundation.org/wp-content/uploads/2019/04/Logo.png" alt="logo" style="width:40px;">
+            </a>
+          </div>
+          <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="#">HOME</a></li>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">LOGIN
+                <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Organization</a></li>
+                  <li><a href="#">Principal</a></li>
+                  <li><a href="#">Educator</a></li> 
+                </ul>
+              </li>
+              <li><a href="#about">ABOUT</a></li>
+              <li><a href="#faqs">FAQs</a></li>
+              <li><a href="#contact">CONTACT</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <img src="gallery1.jpg" width="1200" height="700">
+        <div class="text-block">SIMPLE EDUCATION FOUNDATION</div>     
+      </div>
+
+      <div class="item">
+        <img src="gallery2.jpg" width="1200" height="700">
+        <div class="text-block">"Changes start with you.<br>We can do this if we dream and act together"</div>    
+      </div>
+    
+      <div class="item">
+        <img src="gallery3.jpg" width="1200" height="700">
+        <div class="text-block">some quote</div>   
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" style="position:absoulte;top:20px;" href="#myCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+</div>
+
+<!--contaier(about section)-->
+
+<div id="about" class="container" style="width:100%;background: #085078;
+background: -webkit-linear-gradient(to right, #85D8CE, #085078); 
+background: linear-gradient(to right, #85D8CE, #085078);">
+    <h3 class="text-center">ABOUT US</h3>
+    <p style="font-size:20px;color:white;">There are more than 113 million children studying in India's government schools.
+        We believe that they ALL deserve an education that gives them the skills, knowledge and mindset needed to build a future, that’s free from the fear of limited choices, doubt and discrimination. Their right to quality education cannot be determined by where they’re born.
+        To live in harmony in this ever-changing world, we believe our children will continuously learn, reflect and grow into self-aware individuals who act with alignment in head, heart, hand, and soul in service of all beings.
+        <span><a class="showmore" href="https://simpleeducationfoundation.org/about-us-test/">ShowMore</a></span>
+    </p>
+</div>
+
+  
+<!--faq section-->
+<div id="faqs" class="container" style="width:100%;background: #DAE2F8;background: -webkit-linear-gradient(to right, #D6A4A4, #DAE2F8);
+background: linear-gradient(to right, #D6A4A4, #DAE2F8);">
+    <h3 class="text-center">FREQUENTLY ASKED QUESTIONS</h3>
+    <div class="content">
+        <button class="accordion">What eaxctly SEF does?</button>
+        <div class="panel">
+        <p>To transform teaching and learning practices inside government schools</p>
+        </div>
+
+        <button class="accordion">Do you want to contribute to our NGO?</button>
+        <div class="panel">
+        <p>Yes, refer the contact us in our home page</p>
+        </div>
+
+        <button class="accordion">Where should I Login?</button>
+        <div class="panel">
+        <p>If you are from an organisation login through organization page, if you are a principal/school head login through principal page, if you are a educator/teacher login through teacher page </p>
+        </div>
+
+        <button class="accordion">what if I want to join this NGO ?</button>
+        <div class="panel">
+        <p>We welcome you anytime,there are contact details mentioned in the site.Do contact us for more details.</p>
+        </div>
+
+        <button class="accordion">What if I want to evaluate and track the student progress?</button>
+        <div class="panel">
+        <p>You must login into respective login pages to evaluate and track the changes.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+
+<!-- Container (Contact Section) -->
+<div class="bg-img" style="background-image: url('bg7.jpg');">
+<div id="contact" class="container">
+  <h3 class="text-center">Contact</h3>
+  <p class="text-center" style="color:white;"><em>We are always thankful for our donars!</em></p>
+
+  <div class="row"style="color:white;font-size:15px;">
+    <div class="col-md-4">
+      <p>Donar?Drop a note</p>
+      <p><span class="glyphicon glyphicon-map-marker"></span>A-14/4, 2nd Floor,
+        Vasant Vihar,
+        New Delhi-110057</p>
+      <p><span class="glyphicon glyphicon-phone"></span>Phone:+91-9810704035<br> +91-9871136123<br>+91-8447821214</p>
+      <p><span class="glyphicon glyphicon-envelope"></span><a href="https://mail.google.com">Email:connect@simpleeducationfoundation.org</a></p>
+    </div>
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+        </div>
+        <div class="col-sm-6 form-group">
+          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+        </div>
+      </div>
+      <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea>
+      <br>
+      <div class="row">
+        <div class="col-md-12 form-group">
+          <button class="btn pull-right" type="submit">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- Footer -->
+<footer class="text-center">
+  <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a><br><br>
+  <p><a href="#" data-toggle="tooltip">Contact</a></p> 
+</footer>
+
+<script>
+$(document).ready(function(){
+  // Initialize Tooltip
+  $('[data-toggle="tooltip"]').tooltip(); 
+  
+  // Add smooth scrolling to all links in navbar + footer link
+  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 900, function(){
+   
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+})
+</script>
+
+</body>
+</html>
